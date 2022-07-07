@@ -1,0 +1,6 @@
+node_modules/
+*.key
+*.pub
+*.env
+prisma/migrations/
+.vscode/

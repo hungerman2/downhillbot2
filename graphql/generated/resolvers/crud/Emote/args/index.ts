@@ -1,0 +1,12 @@
+export { AggregateEmoteArgs } from "./AggregateEmoteArgs";
+export { CreateEmoteArgs } from "./CreateEmoteArgs";
+export { CreateManyEmoteArgs } from "./CreateManyEmoteArgs";
+export { DeleteEmoteArgs } from "./DeleteEmoteArgs";
+export { DeleteManyEmoteArgs } from "./DeleteManyEmoteArgs";
+export { FindFirstEmoteArgs } from "./FindFirstEmoteArgs";
+export { FindManyEmoteArgs } from "./FindManyEmoteArgs";
+export { FindUniqueEmoteArgs } from "./FindUniqueEmoteArgs";
+export { GroupByEmoteArgs } from "./GroupByEmoteArgs";
+export { UpdateEmoteArgs } from "./UpdateEmoteArgs";
+export { UpdateManyEmoteArgs } from "./UpdateManyEmoteArgs";
+export { UpsertEmoteArgs } from "./UpsertEmoteArgs";

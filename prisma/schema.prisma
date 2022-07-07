@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output = "../graphql/generated"
+}
+
+model User {
+  id  String  @id
+  nickname String?
+  roles Role[]
+  permissions Permission[]
+  emotes Emote[]
+  isAdmin Boolean
+  grade Grade
+  polls Poll[]
+}
+
+model Role{
+  id  String  @id
+  name String @default("unnamed")
+  users User[]
+}
+
+model Permission{
+  id  Int @id @default(autoincrement())
+  channelId String
+  allowed String @default("0")
+  denied  String @default("0")
+  user User @relation(fields:[userId], references: [id])
+  userId String
+  @@unique([channelId,userId])
+}
+
+model Emote{
+  id  String  @id
+  date DateTime @db.Date
+  count Int @default(0)
+  owner User @relation(fields: [ownerId], references: [id])
+  ownerId String
+}
+
+model Poll{
+  id String @id
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+enum Grade{
+  NONE
+  NORMAL
+  ELITE
+  PRO
+}
