@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Grade } from '@prisma/client';
-import { context } from '../../../../context';
+import { context } from '../../../../../context';
 
 const strings = {
 	name: '-테스트-합격자-등록',

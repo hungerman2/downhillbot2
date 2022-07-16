@@ -14,9 +14,9 @@ export class EmoteCreateInput {
   id!: string;
 
   @TypeGraphQL.Field(_type => Date, {
-    nullable: false
+    nullable: true
   })
-  date!: Date;
+  date?: Date | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true

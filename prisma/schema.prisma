@@ -44,7 +44,7 @@ model Permission{
 
 model Emote{
   id  String  @id
-  date DateTime @db.Date
+  date DateTime @db.Date @default(now())
   count Int @default(0)
   owner User @relation(fields: [ownerId], references: [id])
   ownerId String

@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { Grade } from '@prisma/client';
-import { context } from '../../../../context';
+import { context } from '../../../../../context';
 
 const strings = {
 	name: '-테스트-합격자-조회',
@@ -14,22 +14,24 @@ export const loadPasser = {
 		.setDescription(strings.description),
 	async execute(interaction) {
 		const res = await getAllUserNicknameByGrade();
-		interaction.reply(res);
+		console.log(res);
+		interaction.reply(',');
 	},
 };
 
 const getAllUserNicknameByGrade = async () => {
 	const grades = [Grade.NORMAL, Grade.ELITE, Grade.PRO];
-	const ret: any[] = [];
+	let ret = {};
 	for (const grade of grades) {
-		ret.push(await getUserNicknameByGrade(grade));
+		ret = { ...ret, ...(await getUserNicknameByGrade(grade)) };
 	}
 	return ret;
 };
 
 const getUserNicknameByGrade = async (grade: Grade) => {
 	const prisma = context.prisma;
-	const ret = await prisma.user.findMany({
+	let ret = {};
+	const nicknames = await prisma.user.findMany({
 		select: {
 			nickname: true,
 		},
@@ -37,5 +39,6 @@ const getUserNicknameByGrade = async (grade: Grade) => {
 			grade,
 		},
 	});
+	ret[grade] = nicknames.map((value) => value.nickname);
 	return ret;
 };

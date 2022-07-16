@@ -1,13 +1,11 @@
-interface IConstants {
-	EMOTE_LIMIT_NORMAL: number;
-	EMOTE_LIMIT_ELITE: number;
-	EMOTE_LIMIT_PRO: number;
-}
+class Constants {
+	EMOTE_PERIOD: { NORMAL: number; ELITE: number; PRO: number };
+	EMOTE_LIMIT: { NORMAL: number; ELITE: number; PRO: number };
 
-class Constants implements IConstants {
-	EMOTE_LIMIT_NORMAL: number = 1;
-	EMOTE_LIMIT_ELITE: number = 2;
-	EMOTE_LIMIT_PRO: number = 3;
+	constructor() {
+		this.EMOTE_LIMIT = { NORMAL: 1, ELITE: 2, PRO: 3 };
+		this.EMOTE_PERIOD = { NORMAL: 14, ELITE: 7, PRO: 0 };
+	}
 }
 
 export const Const = new Constants();
